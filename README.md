@@ -65,6 +65,65 @@ for credentials,
 That was for configuring git from local
 
 
+Guide
 
+Frontend & Backend: Next.js
+Styling: Tailwind CSS
+Database: PostgreSQL
+ORM (Object-Relational Mapper): Prisma
+Database Management: Docker Compose
+
+
+2. Local Development Environment Setup
+
+Step 1: Install Necessary Tools
+
+Node.js & npm:
+Install nvm (Node Version Manager) for easy version management: curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
+
+Install the latest stable version: nvm install --lts
+
+Visual Studio Code:
+Download the .deb file and install via sudo dpkg -i code_*.deb.
+
+Git:
+Install via sudo apt install git.
+
+Docker & Docker Compose:
+
+Follow the official Docker documentation to install it on Ubuntu.
+
+Add your user to the docker group to avoid sudo commands: sudo usermod -aG docker $USER.
+
+Step 2: Start the Local Database
+Use a docker-compose.yml file in the project's root directory to define and start the database container.
+
+Run the command docker compose up -d to start the PostgreSQL container.
+
+Step 3: Connect and Configure Prisma
+Set the local database connection URL in your .env file:
+
+DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/postgres"
+
+Install Prisma CLI: npm install prisma --save-dev
+
+Initialize Prisma: npx prisma init
+
+Define your data models (User, Project, BlogPost) in the prisma/schema.prisma file.
+
+Run the first database migration to create the tables: npx prisma migrate dev --name init
+
+3. Building and Deploying 
+The Development Workflow
+Start the app: Run npm run dev to start the Next.js development server.
+
+Code and iterate: Build your pages, components, and API routes. Use Prisma Client (automatically generated) for all your database queries.
+
+Update the database: Whenever you change your data models in prisma/schema.prisma, run npx prisma migrate dev again to apply the changes to your local database.
+
+Deployment
+Prepare for Production: Once your application is complete, you'll update your .env file with the production database URL from your hosting provider (e.g., Supabase or a cloud provider).
+
+Deploy: Connect your GitHub repository to a service like Vercel. Vercel will automatically build and deploy your Next.js application, making it live for the world to see.
 
 
