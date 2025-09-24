@@ -3,22 +3,22 @@ version: '3.8'
 services:
   db:
     image: postgres:latest
-    container_name: my-portfolio-db
+    container_name: hm-pf-db
     restart: always
     environment:
-      POSTGRES_PASSWORD: mysecretpassword
+      POSTGRES_PASSWORD: 1234
     ports:
       - "5432:5432"
     volumes:
-      - my-portfolio-db-volume:/var/lib/postgresql/data
+      - hm-pf-db-volume:/var/lib/postgresql/data
   
-  # This section is for your Next.js app, which you'll add later
-  # app:
-  #   build: .
-  #   ports:
-  #     - "3000:3000"
-  #   depends_on:
-  #     - db
+# This section is for your Next.js app, which you'll add later
+# app:
+#   build: .
+#   ports:
+#     - "3000:3000"
+#   depends_on:
+#     - db
 
 volumes:
   my-portfolio-db-volume:
